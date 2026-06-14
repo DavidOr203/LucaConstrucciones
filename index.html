@@ -1,0 +1,1927 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Luca Construcciones | Panel de Obra</title>
+  <meta name="description" content="Panel profesional para gestión diaria de trabajadores, fotos e incidencias de obra." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2216%22%20fill%3D%22%23061b36%22/%3E%3Cpath%20d%3D%22M12%2052V20l17-8v40M29%2052V7l23%2011v34M7%2052h50M18%2027h5M18%2037h5M35%2026h6M35%2037h6M46%2030h5%22%20fill%3D%22none%22%20stroke%3D%22%23f5a623%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E" type="image/svg+xml">
+  <style>
+:root{
+  --navy:#061b36;
+  --navy-2:#082446;
+  --slate:#334155;
+  --muted:#64748b;
+  --line:#dbe3ec;
+  --soft:#f3f6f9;
+  --paper:#fbfaf7;
+  --white:#ffffff;
+  --cement:#cfd6de;
+  --amber:#f5a623;
+  --amber-dark:#d78307;
+  --blue:#1456a0;
+  --green:#16835d;
+  --red:#c93434;
+  --orange:#d97706;
+  --shadow:0 22px 70px rgba(6,27,54,.12);
+  --radius:18px;
+  --radius-sm:12px;
+  --font:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:var(--font);
+  color:var(--navy);
+  background:
+    radial-gradient(circle at 15% 5%, rgba(245,166,35,.10), transparent 30%),
+    linear-gradient(135deg,#f8fafc 0%, #f2f5f8 45%, #fff 100%);
+}
+button,input,select,textarea{font:inherit}
+.hidden{display:none!important}
+.mobile-only{display:none!important}
+.toast{
+  position:fixed;
+  right:20px;
+  top:20px;
+  z-index:1000;
+  display:grid;
+  gap:10px;
+}
+.toast-item{
+  background:var(--navy);
+  color:#fff;
+  padding:12px 16px;
+  border-radius:12px;
+  box-shadow:var(--shadow);
+  animation:slideIn .22s ease-out;
+}
+@keyframes slideIn{from{transform:translateY(-8px);opacity:0}to{transform:none;opacity:1}}
+.login-shell{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:36px;
+  align-items:center;
+  padding:48px;
+  max-width:1180px;
+  margin:auto;
+}
+.login-brand{
+  min-height:520px;
+  border-radius:34px;
+  padding:46px;
+  color:#fff;
+  background:
+    linear-gradient(rgba(6,27,54,.86),rgba(6,27,54,.92)),
+    url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22800%22%20height%3D%22600%22%20viewBox%3D%220%200%20800%20600%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-opacity%3D%22.09%22%20stroke-width%3D%222%22%3E%3Cpath%20d%3D%22M50%20500h700M140%20500V240h90v260M300%20500V160h160v340M530%20500V280h120v220M90%20240h190M300%20160h260M500%20280h200M130%20240l50-70%2050%2070M530%20280l60-80%2060%2080M460%20160V70h210v90M460%2092h210%22/%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(135deg,var(--navy),var(--navy-2));
+  box-shadow:var(--shadow);
+  display:flex;
+  align-items:flex-start;
+  gap:22px;
+  position:relative;
+  overflow:hidden;
+}
+.login-brand:after{
+  content:"";
+  position:absolute;
+  right:-70px;
+  bottom:-70px;
+  width:310px;
+  height:310px;
+  border-radius:50%;
+  border:34px solid rgba(245,166,35,.17);
+}
+.brand-mark{
+  width:74px;
+  height:74px;
+  border-radius:22px;
+  display:grid;
+  place-items:center;
+  color:var(--amber);
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.18);
+  flex:0 0 auto;
+}
+.brand-mark svg{width:46px;height:46px}
+.brand-mark.small{width:48px;height:48px;border-radius:15px}
+.brand-mark.small svg{width:30px;height:30px}
+.eyebrow{
+  margin:0 0 8px;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  font-size:12px;
+  color:var(--amber);
+  font-weight:800;
+}
+h1,h2,h3,p{margin-top:0}
+h1{font-size:54px;line-height:1.02;margin-bottom:18px;letter-spacing:-.04em}
+.lead{font-size:20px;line-height:1.55;color:rgba(255,255,255,.78);max-width:610px}
+.login-card,.modal-card{
+  background:rgba(255,255,255,.88);
+  backdrop-filter:blur(14px);
+  border:1px solid rgba(219,227,236,.9);
+  border-radius:28px;
+  padding:30px;
+  box-shadow:var(--shadow);
+}
+.card-head{margin-bottom:24px}
+.card-head h2{font-size:30px;margin-bottom:8px}
+.card-head p{color:var(--muted);line-height:1.45}
+label{display:grid;gap:8px;margin:0 0 16px}
+label span{font-weight:800;font-size:13px;color:var(--slate)}
+input,select,textarea{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:13px 14px;
+  background:#fff;
+  color:var(--navy);
+  outline:none;
+  transition:.15s;
+}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 4px rgba(20,86,160,.10);
+}
+textarea{resize:vertical}
+.btn{
+  border:0;
+  border-radius:13px;
+  padding:12px 16px;
+  font-weight:900;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  text-decoration:none;
+  transition:.15s;
+  white-space:nowrap;
+}
+.btn:hover{transform:translateY(-1px)}
+.btn.primary{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff}
+.btn.secondary{background:#edf3fa;color:var(--navy);border:1px solid var(--line)}
+.btn.ghost{background:transparent;color:var(--navy);border:1px solid var(--line)}
+.btn.danger{background:#fee2e2;color:#991b1b;border:1px solid #fecaca}
+.btn.full{width:100%}
+.file-btn{position:relative;overflow:hidden}
+.secure-note{
+  margin-top:18px;
+  padding:16px;
+  border-radius:16px;
+  background:#f8fafc;
+  border:1px dashed var(--line);
+  display:grid;
+  gap:8px;
+  color:var(--muted);
+  font-size:13px;
+}
+code{
+  display:inline-block;
+  padding:8px 10px;
+  border-radius:10px;
+  background:#0b1b33;
+  color:#fff;
+  font-family:"SFMono-Regular",Consolas,monospace;
+}
+.dashboard-shell{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:290px 1fr;
+}
+.sidebar{
+  min-height:100vh;
+  padding:22px;
+  background:rgba(255,255,255,.82);
+  border-right:1px solid var(--line);
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  position:sticky;
+  top:0;
+}
+.side-brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px;
+  border-radius:18px;
+  background:linear-gradient(135deg,var(--navy),var(--navy-2));
+  color:#fff;
+}
+.side-brand span{display:block;font-size:12px;color:rgba(255,255,255,.65);margin-top:2px}
+.nav{display:grid;gap:6px}
+.nav button{
+  width:100%;
+  border:0;
+  background:transparent;
+  border-radius:14px;
+  padding:13px 14px;
+  text-align:left;
+  color:var(--slate);
+  font-weight:850;
+  cursor:pointer;
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.nav button.active{
+  background:#eef3f8;
+  color:var(--navy);
+}
+.nav button span:first-child{width:24px;text-align:center}
+.sidebar-illustration{
+  margin-top:auto;
+  color:var(--navy);
+  padding:20px 0 0;
+}
+.main{min-width:0}
+.topbar{
+  height:86px;
+  background:linear-gradient(135deg,var(--navy),var(--navy-2));
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 34px;
+  gap:20px;
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+.topbar h2{margin:0;font-size:24px}
+.topbar .eyebrow{margin:0 0 4px}
+.top-actions{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.avatar-card{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:8px 10px;
+  border-radius:16px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+}
+.avatar-card span{display:block;color:rgba(255,255,255,.66);font-size:12px}
+.avatar{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,var(--amber),#ffd58b);
+  color:var(--navy);
+  font-weight:950;
+}
+.page{
+  padding:32px;
+  max-width:1450px;
+}
+.page-title-row,.section-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:18px;
+  margin-bottom:20px;
+}
+.page-title-row h1,.section-head h3{margin-bottom:5px}
+.subtle{color:var(--muted);line-height:1.45}
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:16px;
+  margin-bottom:22px;
+}
+.stat-card,.panel,.summary-card,.worker-card,.incident-card{
+  background:rgba(255,255,255,.92);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:0 14px 40px rgba(6,27,54,.06);
+}
+.stat-card{
+  padding:20px;
+  min-height:148px;
+  display:grid;
+  grid-template-columns:58px 1fr;
+  gap:16px;
+  align-items:start;
+}
+.stat-icon{
+  width:58px;height:58px;border-radius:20px;
+  display:grid;place-items:center;
+  font-size:26px;
+  background:#eef4ff;
+}
+.stat-card.warning .stat-icon{background:#fff3df}
+.stat-card.danger .stat-icon{background:#fde8e8}
+.stat-card h3{font-size:34px;margin:2px 0 4px}
+.stat-card p{color:var(--muted);margin:0;font-weight:750}
+.stat-card small{font-weight:900}
+.positive{color:var(--green)}
+.orange{color:var(--orange)}
+.red{color:var(--red)}
+.blue{color:var(--blue)}
+.content-grid{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:18px;
+}
+.panel{padding:20px;min-width:0}
+.table-wrap{overflow:auto}
+table{width:100%;border-collapse:collapse;min-width:650px}
+th,td{
+  padding:14px 12px;
+  border-bottom:1px solid #edf1f5;
+  text-align:left;
+  font-size:14px;
+}
+th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.worker-line{display:flex;align-items:center;gap:10px}
+.mini-avatar{
+  width:34px;height:34px;border-radius:50%;
+  display:grid;place-items:center;
+  background:#e9eef5;
+  color:var(--navy);
+  font-weight:900;
+}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  border-radius:999px;
+  padding:5px 10px;
+  font-size:12px;
+  font-weight:900;
+  background:#edf3fa;
+  color:var(--blue);
+}
+.badge.green{background:#dcfce7;color:#166534}
+.badge.red{background:#fee2e2;color:#991b1b}
+.badge.orange{background:#ffedd5;color:#9a3412}
+.badge.gray{background:#f1f5f9;color:#475569}
+.photo-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+.photo-tile{
+  min-height:138px;
+  border-radius:14px;
+  overflow:hidden;
+  background:linear-gradient(135deg,#dbe3ec,#f7fafc);
+  position:relative;
+}
+.photo-tile img{width:100%;height:100%;object-fit:cover;display:block}
+.photo-tile{position:relative}
+.photo-info{
+  position:absolute;
+  bottom:0;left:0;right:0;
+  background:linear-gradient(transparent, rgba(6,27,54,.82));
+  color:#fff;
+  padding:28px 12px 10px;
+  opacity:0;
+  transition:.2s;
+}
+.photo-tile:hover .photo-info{opacity:1}
+.photo-info strong{display:block;font-size:12px;font-weight:900}
+.photo-info span{font-size:11px;opacity:.8}
+.photo-info .photo-comment{font-size:11px;margin-top:2px;opacity:.75;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.photo-badge{
+  position:absolute;
+  top:8px;left:8px;
+  background:rgba(6,27,54,.75);
+  color:#fff;
+  border-radius:20px;
+  padding:3px 9px;
+  font-size:10px;
+  font-weight:900;
+  backdrop-filter:blur(4px);
+}
+.photo-placeholder{
+  height:100%;
+  display:grid;
+  place-items:center;
+  min-height:138px;
+  color:var(--muted);
+  font-weight:900;
+  text-align:center;
+  padding:14px;
+}
+.upload-zone{
+  border:1.6px dashed var(--line);
+  border-radius:16px;
+  padding:28px;
+  text-align:center;
+  color:var(--muted);
+  margin-bottom:14px;
+  background:#fbfdff;
+}
+.grid{display:grid;gap:16px}
+.grid.two{grid-template-columns:1fr 1fr}
+.grid.three{grid-template-columns:repeat(3,1fr)}
+.worker-grid,.summary-grid,.incident-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+}
+.worker-card,.summary-card,.incident-card{padding:18px}
+.card-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.kpi-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.input-row{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr auto;
+  gap:12px;
+  align-items:end;
+}
+.week-form{
+  display:grid;
+  gap:14px;
+}
+.days-grid{
+  display:grid;
+  grid-template-columns:repeat(7,minmax(0,1fr));
+  gap:10px;
+}
+.days-grid label{margin:0}
+.days-grid input{text-align:center;padding:11px 8px}
+.icon-btn{
+  width:42px;height:42px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.08);
+  color:inherit;
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+}
+.modal{
+  border:0;
+  padding:0;
+  background:transparent;
+  width:min(720px,calc(100vw - 28px));
+}
+.modal::backdrop{background:rgba(6,27,54,.55);backdrop-filter:blur(4px)}
+.modal-card{width:100%;background:#fff}
+.modal-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:20px;
+}
+.modal-head .icon-btn{background:#f1f5f9;color:var(--navy);border:1px solid var(--line)}
+.modal-actions{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;margin-top:16px}
+.empty-state{
+  border:1px dashed var(--line);
+  border-radius:18px;
+  padding:30px;
+  text-align:center;
+  color:var(--muted);
+  background:#fff;
+}
+.settings-list{
+  display:grid;
+  gap:16px;
+  max-width:850px;
+}
+.setting-block{padding:20px;border-radius:18px;background:#fff;border:1px solid var(--line)}
+.setting-block code{margin-top:8px}
+@media (max-width:1100px){
+  .login-shell{grid-template-columns:1fr;padding:24px}
+  .login-brand{min-height:360px}
+  h1{font-size:42px}
+  .dashboard-shell{grid-template-columns:1fr}
+  .sidebar{
+    position:fixed;
+    inset:0 auto 0 0;
+    width:290px;
+    z-index:40;
+    transform:translateX(-105%);
+    transition:.18s;
+    box-shadow:var(--shadow);
+  }
+  .sidebar.open{transform:none}
+  .mobile-only{display:grid!important}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .content-grid{grid-template-columns:1fr}
+  .worker-grid,.summary-grid,.incident-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:720px){
+  .login-shell{padding:14px}
+  .login-brand{padding:26px;border-radius:24px;min-height:300px}
+  .brand-mark{width:58px;height:58px}
+  .brand-mark svg{width:36px;height:36px}
+  h1{font-size:34px}
+  .lead{font-size:16px}
+  .topbar{height:auto;min-height:74px;padding:14px;align-items:flex-start}
+  .top-actions{gap:8px;flex-wrap:wrap;justify-content:flex-end}
+  .top-actions .btn{display:none}
+  .avatar-card{padding:6px}
+  .avatar-card div:nth-child(2){display:none}
+  .page{padding:18px}
+  .stats-grid,.worker-grid,.summary-grid,.incident-grid,.grid.two,.grid.three,.days-grid{grid-template-columns:1fr}
+  .stat-card{grid-template-columns:52px 1fr}
+  .photo-grid{grid-template-columns:1fr 1fr}
+  .input-row{grid-template-columns:1fr}
+}
+
+</style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+  <div id="toast" class="toast" aria-live="polite"></div>
+
+  <main id="app">
+    <section id="loginView" class="login-shell">
+      <div class="login-brand">
+        <div class="brand-mark">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <path d="M12 52V20l17-8v40M29 52V7l23 11v34" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7 52h50M18 27h5M18 37h5M35 26h6M35 37h6M46 30h5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <p class="eyebrow">Panel privado de obra</p>
+          <h1>Luca Construcciones</h1>
+          <p class="lead">Gestión semanal de trabajadores, fotos, incidencias y rendimiento en una interfaz sencilla y profesional.</p>
+        </div>
+      </div>
+
+      <form id="loginForm" class="login-card" autocomplete="on">
+        <div class="card-head">
+          <h2>Entrar al panel</h2>
+          <p>Usa la cuenta de administrador o el acceso de trabajador creado desde el panel.</p>
+        </div>
+
+        <label>
+          <span>Usuario</span>
+          <input id="loginUser" name="username" type="text" placeholder="admin@lucaconstrucciones.es" required />
+        </label>
+
+        <label>
+          <span>Contraseña o código</span>
+          <input id="loginPass" name="password" type="password" placeholder="••••••••••••" required />
+        </label>
+
+        <button class="btn primary full" type="submit">Acceder</button>
+
+        <div class="secure-note">
+          <strong>Acceso inicial del jefe</strong>
+          <code>admin@lucaconstrucciones.es</code>
+          <code>LC-Admin#2026!79</code>
+        </div>
+      </form>
+    </section>
+
+    <section id="shellView" class="dashboard-shell hidden">
+      <aside class="sidebar">
+        <div class="side-brand">
+          <div class="brand-mark small">
+            <svg viewBox="0 0 64 64" aria-hidden="true">
+              <path d="M12 52V20l17-8v40M29 52V7l23 11v34" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M7 52h50M18 27h5M18 37h5M35 26h6M35 37h6M46 30h5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <strong>Luca Construcciones</strong>
+            <span>Gestión de obra</span>
+          </div>
+        </div>
+
+        <nav id="nav" class="nav"></nav>
+
+        <div class="sidebar-illustration">
+          <svg viewBox="0 0 300 180" aria-hidden="true">
+            <path d="M30 150h240M54 150V95h38v55M112 150v-75h52v75M184 150v-44h58v44M40 95h66M95 76h90M151 52h85M65 95l24-32 23 32M185 106l26-34 27 34" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".18"/>
+            <path d="M218 52V20M151 52V24M151 24h92M243 24v24M152 35h90" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+          </svg>
+        </div>
+
+        <button id="logoutBtn" class="btn ghost full">Cerrar sesión</button>
+      </aside>
+
+      <div class="main">
+        <header class="topbar">
+          <button id="menuBtn" class="icon-btn mobile-only" aria-label="Abrir menú">☰</button>
+          <div>
+            <p id="roleLabel" class="eyebrow">Administrador</p>
+            <h2 id="pageTitle">Panel general</h2>
+          </div>
+          <div class="top-actions">
+            <button id="backupBtn" class="btn secondary admin-only">Exportar datos</button>
+
+            <div class="avatar-card">
+              <div id="userAvatar" class="avatar">LC</div>
+              <div>
+                <strong id="userName">Carlos Martínez</strong>
+                <span id="userRole">Administrador</span>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <section id="dashboardPage" class="page"></section>
+        <section id="workersPage" class="page hidden"></section>
+        <section id="summariesPage" class="page hidden"></section>
+        <section id="photosPage" class="page hidden"></section>
+        <section id="incidentsPage" class="page hidden"></section>
+        <section id="settingsPage" class="page hidden"></section>
+        <section id="workerHomePage" class="page hidden"></section>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="workerDialog" class="modal">
+    <form id="workerForm" class="modal-card">
+      <div class="modal-head">
+        <h3 id="workerDialogTitle">Añadir trabajador</h3>
+        <button class="icon-btn" type="button" data-close-modal>✕</button>
+      </div>
+      <input type="hidden" id="workerId">
+      <div class="grid two">
+        <label><span>Nombre completo</span><input id="workerName" required placeholder="Ej. Juan Pérez"></label>
+        <label><span>Puesto</span><input id="workerJob" required placeholder="Ej. Encofrador"></label>
+      </div>
+      <div class="grid two">
+        <label><span>Usuario</span><input id="workerUsername" required placeholder="juan.perez"></label>
+        <label><span>Contraseña / código</span><input id="workerPassword" required placeholder="LC-XXXXXX"></label>
+      </div>
+      <label><span>Teléfono</span><input id="workerPhone" placeholder="+34 600 000 000"></label>
+      <div class="modal-actions">
+        <button class="btn secondary" type="button" id="generateCodeBtn">Generar código</button>
+        <button class="btn primary" type="submit">Guardar trabajador</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="incidentDialog" class="modal">
+    <form id="incidentForm" class="modal-card">
+      <div class="modal-head">
+        <h3>Nueva incidencia</h3>
+        <button class="icon-btn" type="button" data-close-modal>✕</button>
+      </div>
+      <label><span>Título</span><input id="incidentTitle" required placeholder="Ej. Falta de material en planta 2"></label>
+      <div class="grid two">
+        <label><span>Prioridad</span>
+          <select id="incidentPriority">
+            <option value="Alta">Alta</option>
+            <option value="Media" selected>Media</option>
+            <option value="Baja">Baja</option>
+          </select>
+        </label>
+        <label><span>Estado</span>
+          <select id="incidentStatus">
+            <option value="Pendiente" selected>Pendiente</option>
+            <option value="En revisión">En revisión</option>
+            <option value="Resuelta">Resuelta</option>
+          </select>
+        </label>
+      </div>
+      <label><span>Descripción</span><textarea id="incidentDescription" rows="4" required placeholder="Describe el problema y dónde está."></textarea></label>
+      <div class="modal-actions">
+        <button class="btn primary" type="submit">Crear incidencia</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="photoDialog" class="modal">
+    <form id="photoForm" class="modal-card">
+      <div class="modal-head">
+        <h3>Subir fotos de obra</h3>
+        <button class="icon-btn" type="button" data-close-modal>✕</button>
+      </div>
+      <label><span>Seleccionar imágenes</span><input id="photoInput" type="file" accept="image/*" multiple required></label>
+      <label><span>Comentario</span><textarea id="photoComment" rows="3" placeholder="Ej. Avance de estructura, planta baja."></textarea></label>
+      <div class="modal-actions">
+        <button class="btn primary" type="submit">Guardar fotos</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script>
+// ─── Supabase ─────────────────────────────────────────────────────────────────
+const SUPABASE_URL = "https://juezuukvzwmgcufsdlzo.supabase.co";
+const SUPABASE_KEY = "sb_publishable_vr4l40_KJZpWHI9iQhbWdg_fvovrQCz";
+
+const sb = {
+  async select(table, filters = {}){
+    let url = `${SUPABASE_URL}/rest/v1/${table}?select=*`;
+    for(const [k,v] of Object.entries(filters)) url += `&${k}=eq.${encodeURIComponent(v)}`;
+    const r = await fetch(url, { headers: sbHeaders() });
+    if(!r.ok) throw new Error(await r.text());
+    return r.json();
+  },
+  async insert(table, row){
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+      method: "POST",
+      headers: { ...sbHeaders(), "Prefer": "return=representation" },
+      body: JSON.stringify(row)
+    });
+    if(!r.ok) throw new Error(await r.text());
+    return r.json();
+  },
+  async update(table, id, patch){
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}?id=eq.${id}`, {
+      method: "PATCH",
+      headers: { ...sbHeaders(), "Prefer": "return=representation" },
+      body: JSON.stringify(patch)
+    });
+    if(!r.ok) throw new Error(await r.text());
+    return r.json();
+  },
+  async delete(table, id){
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}?id=eq.${id}`, {
+      method: "DELETE",
+      headers: sbHeaders()
+    });
+    if(!r.ok) throw new Error(await r.text());
+  },
+  async upsert(table, row){
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+      method: "POST",
+      headers: { ...sbHeaders(), "Prefer": "resolution=merge-duplicates,return=representation" },
+      body: JSON.stringify(row)
+    });
+    if(!r.ok) throw new Error(await r.text());
+    return r.json();
+  }
+};
+function sbHeaders(){
+  return {
+    "Content-Type": "application/json",
+    "apikey": SUPABASE_KEY,
+    "Authorization": `Bearer ${SUPABASE_KEY}`
+  };
+}
+
+const SESSION_KEY = "lc.session.diario";
+
+const ADMIN = {
+  id: "admin",
+  name: "Carlos Martínez",
+  username: "admin@lucaconstrucciones.es",
+  password: "LC-Admin#2026!79",
+  role: "admin"
+};
+
+const icons = {
+  dashboard: "🏠",
+  workers: "👷",
+  summaries: "🗓️",
+  photos: "📷",
+  incidents: "⚠️",
+  settings: "⚙️",
+  home: "🏗️"
+};
+
+// --- Utilidades básicas (deben ir ANTES de defaultData) ---
+function uid(){ return "id_" + Math.random().toString(36).slice(2,10) + Date.now().toString(36); }
+function todayISO(){
+  // Usa la fecha LOCAL del dispositivo, no UTC (evita el día anterior en España UTC+1/+2)
+  const d = new Date();
+  const yyyy = d.getFullYear();
+  const mm = String(d.getMonth() + 1).padStart(2, "0");
+  const dd = String(d.getDate()).padStart(2, "0");
+  return `${yyyy}-${mm}-${dd}`;
+}
+function generateWorkerCode(){
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  let out = "LC-";
+  for(let i=0;i<6;i++) out += chars[Math.floor(Math.random()*chars.length)];
+  return out;
+}
+
+function seedData(){
+  const today = todayISO();
+  const workers = [
+    {id: uid(), name:"Juan Pérez",     job:"Encofrador",   username:"juan.perez",     password:"LC-JP-48291", phone:"+34 600 111 222", active:true, createdAt: today},
+    {id: uid(), name:"Luis Rodríguez", job:"Albañil",      username:"luis.rodriguez", password:"LC-LR-19384", phone:"+34 600 222 333", active:true, createdAt: today},
+    {id: uid(), name:"Miguel Sánchez", job:"Electricista", username:"miguel.sanchez", password:"LC-MS-74821", phone:"+34 600 333 444", active:true, createdAt: today},
+    {id: uid(), name:"Pedro Gómez",    job:"Fontanero",    username:"pedro.gomez",    password:"LC-PG-72593", phone:"+34 600 444 555", active:true, createdAt: today},
+    {id: uid(), name:"Antonio López",  job:"Peón",         username:"antonio.lopez",  password:"LC-AL-91742", phone:"+34 600 555 666", active:true, createdAt: today}
+  ];
+  const reports = [
+    createReport(workers[0].id, today, 8,   "Encofrado terminado en zona A.",                        "Sin incidencias graves.",          "Tableros y puntales revisados."),
+    createReport(workers[1].id, today, 7.5, "Avance de albañilería en tabiques interiores.",          "Falta material para remate.",       "Pedir sacos de mortero."),
+    createReport(workers[2].id, today, 8,   "Canalizaciones eléctricas revisadas.",                   "Todo correcto.",                   "Cableado preparado."),
+    createReport(workers[3].id, today, 8,   "Instalación de fontanería en planta baja.",              "Pendiente revisión de presión.",    "Material suficiente."),
+    createReport(workers[4].id, today, 7,   "Apoyo general, limpieza y movimiento de material.",      "Zona B queda pendiente.",          "Sin necesidades urgentes.")
+  ];
+  return {
+    workers,
+    reports,
+    incidents: [
+      {id: uid(), title:"Retraso de material en zona norte",    priority:"Alta",  status:"Pendiente",    description:"Faltan perfiles metálicos para cerrar la planificación del día.",  createdBy:"Carlos Martínez", createdAt: today},
+      {id: uid(), title:"Revisión de seguridad en andamio",     priority:"Media", status:"En revisión",  description:"Comprobar anclajes antes del inicio de la jornada.",              createdBy:"Carlos Martínez", createdAt: today},
+      {id: uid(), title:"Limpieza pendiente en planta baja",    priority:"Baja",  status:"Pendiente",    description:"Retirar restos de embalaje y señalizar el paso.",                 createdBy:"Carlos Martínez", createdAt: today}
+    ],
+    photos: [],
+    company: { name:"Luca Construcciones", dateLabel:"Día actual", site:"Obra principal" }
+  };
+}
+
+let state = {
+  data: { workers:[], reports:[], incidents:[], photos:[], company:{ name:"Luca Construcciones", dateLabel:"Día actual", site:"Obra principal" } },
+  session: JSON.parse(sessionStorage.getItem(SESSION_KEY) || "null"),
+  page: "dashboard",
+  selectedDate: todayISO(),
+  loading: false
+};
+function formatDate(iso){
+  const d = new Date(iso + "T12:00:00");
+  return d.toLocaleDateString("es-ES", {weekday:"long", day:"numeric", month:"long", year:"numeric"});
+}
+// Carga todos los datos desde Supabase
+async function loadAllData(){
+  const [workers, reports, incidents, photos] = await Promise.all([
+    sb.select("workers"),
+    sb.select("reports"),
+    sb.select("incidents"),
+    sb.select("photos")
+  ]);
+  // Mapear snake_case de Supabase a camelCase local
+  state.data.workers   = workers.map(mapWorker);
+  state.data.reports   = reports.map(mapReport);
+  state.data.incidents = incidents;
+  state.data.photos    = photos.map(mapPhoto);
+}
+
+// Mappers snake_case → camelCase
+function mapWorker(r){ return { id:r.id, name:r.name, job:r.job, username:r.username, password:r.password, phone:r.phone||"", active:r.active, createdAt:r.created_at }; }
+function mapReport(r){ return { id:r.id, workerId:r.worker_id, date:r.date, hours:Number(r.hours||0), workDone:r.work_done||"", problems:r.problems||"", materials:r.materials||"", status:r.status||"Enviado", createdAt:r.created_at }; }
+function mapPhoto(r){ return { id:r.id, fileName:r.file_name||"", storageUrl:r.storage_url||"", comment:r.comment||"", by:r.by||"", date:r.date||"", createdAt:r.created_at }; }
+
+// saveData ya no hace falta globalmente — cada operación llama a Supabase directamente
+function saveData(){ /* no-op: datos se guardan en Supabase en cada operación */ }
+function createReport(workerId, date, hours, workDone, problems, materials){
+  return {
+    id: uid(),
+    workerId,
+    date,
+    hours: Number(hours || 0),
+    workDone,
+    problems,
+    materials,
+    status: "Enviado",
+    createdAt: new Date().toISOString()
+  };
+}
+function initials(name){
+  return name.split(" ").filter(Boolean).slice(0,2).map(p=>p[0]?.toUpperCase()).join("") || "LC";
+}
+function toast(message){
+  const host = document.getElementById("toast");
+  const item = document.createElement("div");
+  item.className = "toast-item";
+  item.textContent = message;
+  host.appendChild(item);
+  setTimeout(()=>item.remove(), 3000);
+}
+function userIsAdmin(){ return state.session?.role === "admin"; }
+function currentUser(){
+  if(!state.session) return null;
+  if(state.session.role === "admin") return ADMIN;
+  return state.data.workers.find(w => w.id === state.session.id);
+}
+function reportsByDate(date = state.selectedDate){
+  return state.data.reports.filter(r => r.date === date);
+}
+function workerById(id){ return state.data.workers.find(w => w.id === id); }
+
+document.addEventListener("DOMContentLoaded", init);
+
+async function resetApp(){
+  if(!confirm("¿Seguro? Esto recargará los datos desde la base de datos.")) return;
+  await refreshData();
+  toast("Datos recargados desde Supabase.");
+}
+
+async function init(){
+  document.getElementById("loginForm").addEventListener("submit", handleLogin);
+  document.getElementById("logoutBtn").addEventListener("click", logout);
+  document.getElementById("menuBtn").addEventListener("click", () => document.querySelector(".sidebar").classList.toggle("open"));
+  document.getElementById("backupBtn").addEventListener("click", exportData);
+  document.querySelectorAll("[data-close-modal]").forEach(btn => btn.addEventListener("click", e => e.target.closest("dialog").close()));
+  document.getElementById("workerForm").addEventListener("submit", saveWorkerFromForm);
+  document.getElementById("generateCodeBtn").addEventListener("click", () => {
+    document.getElementById("workerPassword").value = generateWorkerCode();
+  });
+  document.getElementById("incidentForm").addEventListener("submit", saveIncidentFromForm);
+  document.getElementById("photoForm").addEventListener("submit", savePhotosFromForm);
+
+  if(state.session){
+    showShell();
+    await refreshData();
+  } else {
+    showLogin();
+  }
+}
+
+// Recarga datos desde Supabase y re-renderiza
+async function refreshData(){
+  setLoading(true);
+  try {
+    await loadAllData();
+    render();
+  } catch(err){
+    toast("❌ Error al conectar con la base de datos. Comprueba tu conexión.");
+    console.error(err);
+  } finally {
+    setLoading(false);
+  }
+}
+
+function setLoading(on){
+  state.loading = on;
+  // Muestra/oculta un spinner simple en el topbar
+  let el = document.getElementById("loadingBar");
+  if(!el){
+    el = document.createElement("div");
+    el.id = "loadingBar";
+    el.style.cssText = "position:fixed;top:0;left:0;right:0;height:3px;background:var(--amber);z-index:9999;transition:opacity .3s";
+    document.body.prepend(el);
+  }
+  el.style.opacity = on ? "1" : "0";
+}
+
+function showLogin(){
+  document.getElementById("loginView").classList.remove("hidden");
+  document.getElementById("shellView").classList.add("hidden");
+}
+function showShell(){
+  document.getElementById("loginView").classList.add("hidden");
+  document.getElementById("shellView").classList.remove("hidden");
+  setupUserChrome();
+  state.page = userIsAdmin() ? "dashboard" : "workerHome";
+  renderNav();
+  render(); // Render con datos vacíos primero (inmediato)
+  // refreshData() se llama desde handleLogin/init tras showShell
+}
+async function handleLogin(e){
+  e.preventDefault();
+  const username = document.getElementById("loginUser").value.trim();
+  const password = document.getElementById("loginPass").value.trim();
+  const btn = e.target.querySelector("button[type=submit]");
+  btn.disabled = true;
+  btn.textContent = "Entrando…";
+
+  try {
+    // Admin: comprobación local (no está en Supabase)
+    if(username === ADMIN.username && password === ADMIN.password){
+      state.session = {id: ADMIN.id, role: "admin"};
+      sessionStorage.setItem(SESSION_KEY, JSON.stringify(state.session));
+      showShell();
+      await refreshData();
+      toast("Bienvenido, Carlos.");
+      return;
+    }
+
+    // Trabajador: buscar en Supabase
+    const workers = await sb.select("workers");
+    const worker = workers.find(w =>
+      w.active &&
+      (w.username.toLowerCase() === username.toLowerCase() || w.password === username) &&
+      w.password === password
+    );
+
+    if(worker){
+      state.session = {id: worker.id, role: "worker"};
+      sessionStorage.setItem(SESSION_KEY, JSON.stringify(state.session));
+      showShell();
+      await refreshData();
+      toast(`Bienvenido, ${worker.name}.`);
+      return;
+    }
+
+    toast("Usuario, contraseña o código incorrecto.");
+  } catch(err){
+    toast("❌ Error de conexión. Comprueba tu internet.");
+    console.error(err);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Acceder";
+  }
+}
+function logout(){
+  sessionStorage.removeItem(SESSION_KEY);
+  state.session = null;
+  showLogin();
+}
+
+function setupUserChrome(){
+  const u = currentUser();
+  document.getElementById("userName").textContent = u?.name || "Usuario";
+  document.getElementById("userRole").textContent = userIsAdmin() ? "Administrador" : "Trabajador";
+  document.getElementById("roleLabel").textContent = userIsAdmin() ? "Administrador" : "Trabajador";
+  document.getElementById("userAvatar").textContent = initials(u?.name || "LC");
+  document.querySelectorAll(".admin-only").forEach(el => el.style.display = userIsAdmin() ? "" : "none");
+}
+
+function renderNav(){
+  const nav = document.getElementById("nav");
+  const items = userIsAdmin()
+    ? [
+      ["dashboard","Panel general",icons.dashboard],
+      ["workers","Trabajadores",icons.workers],
+      ["summaries","Partes diarios",icons.summaries],
+      ["photos","Fotos",icons.photos],
+      ["incidents","Incidencias",icons.incidents],
+      ["settings","Ajustes",icons.settings]
+    ]
+    : [
+      ["workerHome","Mi día",icons.home],
+      ["photos","Subir fotos",icons.photos],
+      ["incidents","Incidencias",icons.incidents],
+      ["settings","Mi acceso",icons.settings]
+    ];
+
+  nav.innerHTML = items.map(([id,label,icon]) => `<button data-page="${id}" class="${state.page===id?'active':''}"><span>${icon}</span><span>${label}</span></button>`).join("");
+  nav.querySelectorAll("button").forEach(btn => btn.addEventListener("click", () => {
+    state.page = btn.dataset.page;
+    document.querySelector(".sidebar").classList.remove("open");
+    render();
+  }));
+}
+
+function render(){
+  // Si los datos aún no cargaron, no renderizar páginas que dependen de ellos
+  if(state.loading) return;
+
+  // Guard: si es trabajador pero aún no hay workers en memoria, esperar
+  if(!userIsAdmin() && state.session && !currentUser()){
+    return; // refreshData() llamará a render() cuando termine
+  }
+
+  const pages = ["dashboard","workers","summaries","photos","incidents","settings","workerHome"];
+  pages.forEach(p => document.getElementById(`${p}Page`)?.classList.add("hidden"));
+  if(!userIsAdmin() && ["dashboard","workers","summaries"].includes(state.page)) state.page = "workerHome";
+  const current = document.getElementById(`${state.page}Page`);
+  current?.classList.remove("hidden");
+
+  const titleMap = {
+    dashboard:"Panel general",
+    workers:"Trabajadores",
+    summaries:"Partes diarios",
+    photos:"Fotos de la obra",
+    incidents:"Incidencias",
+    settings: userIsAdmin() ? "Ajustes" : "Mi acceso",
+    workerHome:"Mi día"
+  };
+  document.getElementById("pageTitle").textContent = titleMap[state.page] || "Panel";
+  renderNav();
+
+  if(state.page === "dashboard") renderDashboard();
+  if(state.page === "workers") renderWorkers();
+  if(state.page === "summaries") renderSummaries();
+  if(state.page === "photos") renderPhotos();
+  if(state.page === "incidents") renderIncidents();
+  if(state.page === "settings") renderSettings();
+  if(state.page === "workerHome") renderWorkerHome();
+}
+
+function datePickerHtml(){
+  return `<label style="margin:0;min-width:210px"><span>Fecha</span><input id="datePicker" type="date" value="${state.selectedDate}"></label>`;
+}
+function bindDatePicker(){
+  const picker = document.getElementById("datePicker");
+  if(picker){
+    picker.addEventListener("change", e => {
+      state.selectedDate = e.target.value || todayISO();
+      render();
+    });
+  }
+}
+
+function renderDashboard(){
+  const page = document.getElementById("dashboardPage");
+  const workers = state.data.workers.filter(w => w.active);
+  const reports = reportsByDate();
+  const pending = workers.length - reports.length;
+  const openIncidents = state.data.incidents.filter(i => i.status !== "Resuelta");
+  const critical = state.data.incidents.filter(i => i.priority === "Alta" && i.status !== "Resuelta").length;
+  const totalHours = reports.reduce((a,r)=>a + Number(r.hours || 0), 0);
+
+  page.innerHTML = `
+    <div class="page-title-row">
+      <div>
+        <h1>Panel general</h1>
+        <p class="subtle">Bienvenido, Carlos. Aquí tienes el rendimiento diario de la obra.</p>
+      </div>
+      ${datePickerHtml()}
+    </div>
+
+    <div class="stats-grid">
+      ${statCard("👷","Trabajadores activos",workers.length,"Equipo disponible","positive")}
+      ${statCard("🗓️","Partes enviados",reports.length,`${Math.round((reports.length / Math.max(workers.length,1))*100)}% del día`,"blue")}
+      ${statCard("⏱️","Pendientes",Math.max(pending,0),`${totalHours}h registradas`,"orange","warning")}
+      ${statCard("⚠️","Incidencias",openIncidents.length,`${critical} críticas`,"red","danger")}
+    </div>
+
+    <div class="content-grid">
+      <div class="panel">
+        <div class="section-head">
+          <div>
+            <h3>Parte diario de trabajadores</h3>
+            <p class="subtle">${formatDate(state.selectedDate)}</p>
+          </div>
+          <button class="btn secondary" onclick="goPage('summaries')">Ver completo</button>
+        </div>
+        ${renderReportTable(reports)}
+        <div class="card-actions"><button class="btn ghost" onclick="goPage('workers')">Ver todos los trabajadores →</button></div>
+      </div>
+
+      <div class="panel">
+        <div class="section-head">
+          <div>
+            <h3>Fotos de la obra</h3>
+            <p class="subtle">Últimas imágenes subidas por el equipo.</p>
+          </div>
+          <button class="btn primary" onclick="openPhotoDialog()">Subir fotos</button>
+        </div>
+        <div class="upload-zone">Arrastra o selecciona fotos desde “Subir fotos”. Formatos: JPG, PNG o WEBP.</div>
+        ${renderPhotoGrid(state.data.photos.slice(-6).reverse())}
+        <div class="card-actions"><button class="btn ghost" onclick="goPage('photos')">Ver todas las fotos →</button></div>
+      </div>
+    </div>
+  `;
+  bindDatePicker();
+}
+function statCard(icon,label,value,caption,captionClass,variant=""){
+  return `<div class="stat-card ${variant}">
+    <div class="stat-icon">${icon}</div>
+    <div><p>${label}</p><h3>${value}</h3><small class="${captionClass}">${caption}</small></div>
+  </div>`;
+}
+function renderReportTable(reports){
+  if(!reports.length) return `<div class="empty-state">Aún no hay partes enviados para este día.</div>`;
+  return `<div class="table-wrap"><table>
+    <thead><tr><th>Trabajador</th><th>Horas</th><th>Trabajo realizado</th><th>Problemas</th><th>Material</th></tr></thead>
+    <tbody>
+      ${reports.map(r => {
+        const w = workerById(r.workerId) || {name:"Trabajador eliminado",job:""};
+        return `<tr>
+          <td><div class="worker-line"><div class="mini-avatar">${initials(w.name)}</div><div><strong>${w.name}</strong><br><span class="subtle">${w.job}</span></div></div></td>
+          <td><strong>${Number(r.hours || 0)}h</strong></td>
+          <td>${escapeHtml(r.workDone || "-")}</td>
+          <td>${escapeHtml(r.problems || "-")}</td>
+          <td>${escapeHtml(r.materials || "-")}</td>
+        </tr>`;
+      }).join("")}
+    </tbody>
+  </table></div>`;
+}
+function renderPhotoGrid(photos){
+  if(!photos.length){
+    return `<div class="photo-grid">
+      ${["Estructura","Hormigón","Grúa","Interior","Equipo","+ Fotos"].map(t => `<div class="photo-tile"><div class="photo-placeholder">${t}</div></div>`).join("")}
+    </div>`;
+  }
+  return `<div class="photo-grid">
+    ${photos.map(p => `
+      <div class="photo-tile">
+        <img src="${p.storageUrl}" alt="${escapeHtml(p.comment || "Foto de obra")}">
+        <div class="photo-badge">${escapeHtml(p.by || "?")}</div>
+        <div class="photo-info">
+          <strong>${escapeHtml(p.by || "Desconocido")}</strong>
+          <span>${escapeHtml(p.date || "")}</span>
+          ${p.comment ? `<div class="photo-comment">${escapeHtml(p.comment)}</div>` : ""}
+        </div>
+      </div>`).join("")}
+  </div>`;
+}
+
+function renderWorkers(){
+  const page = document.getElementById("workersPage");
+  page.innerHTML = `
+    <div class="page-title-row">
+      <div>
+        <h1>Trabajadores</h1>
+        <p class="subtle">Crea cuentas, genera códigos y controla quién puede acceder al panel.</p>
+      </div>
+      <button class="btn primary" onclick="openWorkerDialog()">+ Añadir trabajador</button>
+    </div>
+    <div class="worker-grid">
+      ${state.data.workers.map(w => `
+        <article class="worker-card">
+          <div class="worker-line">
+            <div class="mini-avatar">${initials(w.name)}</div>
+            <div><h3>${w.name}</h3><p class="subtle">${w.job}</p></div>
+          </div>
+          <div class="kpi-row">
+            <span class="badge ${w.active ? "green" : "red"}">${w.active ? "Activo" : "Bloqueado"}</span>
+            <span class="badge gray">${w.username}</span>
+          </div>
+          <p class="subtle" style="margin-top:12px">Código: <code>${w.password}</code></p>
+          <div class="card-actions">
+            <button class="btn secondary" onclick="editWorker('${w.id}')">Editar</button>
+            <button class="btn ghost" onclick="toggleWorker('${w.id}')">${w.active ? "Bloquear" : "Activar"}</button>
+            <button class="btn danger" onclick="deleteWorker('${w.id}')">Eliminar</button>
+          </div>
+        </article>
+      `).join("")}
+    </div>
+  `;
+}
+function openWorkerDialog(worker=null){
+  document.getElementById("workerDialogTitle").textContent = worker ? "Editar trabajador" : "Añadir trabajador";
+  document.getElementById("workerId").value = worker?.id || "";
+  document.getElementById("workerName").value = worker?.name || "";
+  document.getElementById("workerJob").value = worker?.job || "";
+  document.getElementById("workerUsername").value = worker?.username || "";
+  document.getElementById("workerPassword").value = worker?.password || generateWorkerCode();
+  document.getElementById("workerPhone").value = worker?.phone || "";
+  document.getElementById("workerDialog").showModal();
+}
+function editWorker(id){ openWorkerDialog(workerById(id)); }
+async function saveWorkerFromForm(e){
+  e.preventDefault();
+  const id = document.getElementById("workerId").value;
+  const payload = {
+    name: document.getElementById("workerName").value.trim(),
+    job: document.getElementById("workerJob").value.trim(),
+    username: document.getElementById("workerUsername").value.trim(),
+    password: document.getElementById("workerPassword").value.trim(),
+    phone: document.getElementById("workerPhone").value.trim()
+  };
+  if(!payload.name || !payload.job || !payload.username || !payload.password){
+    toast("Completa los campos obligatorios.");
+    return;
+  }
+  const usernameTaken = state.data.workers.some(w => w.username.toLowerCase() === payload.username.toLowerCase() && w.id !== id);
+  if(usernameTaken){
+    toast("Ese usuario ya existe.");
+    return;
+  }
+  const btn = e.target.querySelector("button[type=submit]");
+  btn.disabled = true;
+  try {
+    if(id){
+      await sb.update("workers", id, { name:payload.name, job:payload.job, username:payload.username, password:payload.password, phone:payload.phone });
+      toast("Trabajador actualizado.");
+    } else {
+      const newId = uid();
+      await sb.insert("workers", { id:newId, name:payload.name, job:payload.job, username:payload.username, password:payload.password, phone:payload.phone, active:true, created_at:todayISO() });
+      toast("Trabajador creado.");
+    }
+    document.getElementById("workerDialog").close();
+    await refreshData();
+  } catch(err){
+    toast("❌ Error al guardar trabajador.");
+    console.error(err);
+  } finally {
+    btn.disabled = false;
+  }
+}
+async function toggleWorker(id){
+  const w = workerById(id);
+  try {
+    await sb.update("workers", id, { active: !w.active });
+    toast(w.active ? "Trabajador bloqueado." : "Trabajador activado.");
+    await refreshData();
+  } catch(err){ toast("❌ Error al actualizar trabajador."); console.error(err); }
+}
+async function deleteWorker(id){
+  if(!confirm("¿Eliminar este trabajador? Se conservarán sus partes históricos como trabajador eliminado.")) return;
+  try {
+    await sb.delete("workers", id);
+    toast("Trabajador eliminado.");
+    await refreshData();
+  } catch(err){ toast("❌ Error al eliminar trabajador."); console.error(err); }
+}
+
+function renderSummaries(){
+  const page = document.getElementById("summariesPage");
+  const reports = reportsByDate();
+  page.innerHTML = `
+    <div class="page-title-row">
+      <div>
+        <h1>Partes diarios</h1>
+        <p class="subtle">Vista completa de horas, trabajo realizado, problemas y material pendiente.</p>
+      </div>
+      ${datePickerHtml()}
+    </div>
+    <div class="panel">
+      ${renderReportTable(reports)}
+    </div>
+    <div class="summary-grid" style="margin-top:16px">
+      ${reports.map(r => {
+        const w = workerById(r.workerId) || {name:"Trabajador eliminado",job:""};
+        return `<article class="summary-card">
+          <div class="worker-line"><div class="mini-avatar">${initials(w.name)}</div><div><h3>${w.name}</h3><p class="subtle">${w.job}</p></div></div>
+          <div class="kpi-row"><span class="badge green">${Number(r.hours || 0)}h</span><span class="badge gray">${r.date}</span></div>
+          <p style="margin-top:14px"><strong>Trabajo:</strong><br><span class="subtle">${escapeHtml(r.workDone || "Sin detalle.")}</span></p>
+          <p><strong>Problemas:</strong><br><span class="subtle">${escapeHtml(r.problems || "Sin problemas indicados.")}</span></p>
+          <p><strong>Material:</strong><br><span class="subtle">${escapeHtml(r.materials || "Sin material indicado.")}</span></p>
+        </article>`;
+      }).join("")}
+    </div>
+  `;
+  bindDatePicker();
+}
+
+function renderWorkerHome(){
+  const page = document.getElementById("workerHomePage");
+  const worker = currentUser();
+  if(!worker){ page.innerHTML = `<div class="empty-state">Cargando datos…</div>`; return; }
+  const date = todayISO();
+  const existing = state.data.reports.find(r => r.workerId === worker.id && r.date === date);
+
+  page.innerHTML = `
+    <div class="page-title-row">
+      <div>
+        <h1>Hola, ${worker.name}</h1>
+        <p class="subtle">Rellena tu parte diario: horas, trabajo realizado, problemas y material necesario.</p>
+      </div>
+      <span class="badge ${existing ? "green" : "orange"}">${existing ? "Parte enviado" : "Pendiente de hoy"}</span>
+    </div>
+
+    <div class="content-grid">
+      <div class="panel">
+        <div class="section-head">
+          <div>
+            <h3>Parte diario</h3>
+            <p class="subtle">${formatDate(date)}</p>
+          </div>
+        </div>
+        <form id="summaryForm" class="week-form">
+          <label><span>Horas trabajadas hoy</span><input type="number" min="0" max="16" step="0.5" id="reportHours" value="${existing?.hours ?? 8}" required></label>
+          <label><span>Trabajo realizado</span><textarea id="reportWorkDone" rows="4" required placeholder="Ej. Hemos terminado el encofrado de la zona A.">${existing?.workDone || ""}</textarea></label>
+          <label><span>Problemas o incidencias del día</span><textarea id="reportProblems" rows="3" placeholder="Ej. Falta material, retraso, zona peligrosa...">${existing?.problems || ""}</textarea></label>
+          <label><span>Material necesario / notas para mañana</span><textarea id="reportMaterials" rows="3" placeholder="Ej. Pedir cemento, revisar planos, traer herramienta...">${existing?.materials || ""}</textarea></label>
+          <button class="btn primary" type="submit">${existing ? "Actualizar parte de hoy" : "Enviar parte de hoy"}</button>
+        </form>
+      </div>
+      <div class="panel">
+        <div class="section-head">
+          <div>
+            <h3>Acciones rápidas</h3>
+            <p class="subtle">Fotos e incidencias asociadas a la obra.</p>
+          </div>
+        </div>
+        <div class="grid">
+          <button class="btn secondary full" onclick="openPhotoDialog()">📷 Subir fotos de hoy</button>
+          <button class="btn secondary full" onclick="openIncidentDialog()">⚠️ Comunicar incidencia</button>
+        </div>
+      </div>
+    </div>
+  `;
+  document.getElementById("summaryForm").addEventListener("submit", saveMyReport);
+}
+async function saveMyReport(e){
+  e.preventDefault();
+  const worker = currentUser();
+  const date = todayISO();
+  const hours = Number(document.getElementById("reportHours").value || 0);
+  const workDone = document.getElementById("reportWorkDone").value.trim();
+  const problems = document.getElementById("reportProblems").value.trim();
+  const materials = document.getElementById("reportMaterials").value.trim();
+  const btn = e.target.querySelector("button[type=submit]");
+  btn.disabled = true;
+  btn.textContent = "Guardando…";
+  try {
+    const existing = state.data.reports.find(r => r.workerId === worker.id && r.date === date);
+    const row = {
+      id: existing?.id || uid(),
+      worker_id: worker.id,
+      date,
+      hours,
+      work_done: workDone,
+      problems,
+      materials,
+      status: "Enviado",
+      created_at: new Date().toISOString()
+    };
+    await sb.upsert("reports", row);
+    toast("Parte diario guardado correctamente.");
+    await refreshData();
+  } catch(err){
+    toast("❌ Error al guardar el parte.");
+    console.error(err);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Enviar parte de hoy";
+  }
+}
+
+function renderPhotos(){
+  const page = document.getElementById("photosPage");
+  const photos = [...state.data.photos].reverse();
+  page.innerHTML = `
+    <div class="page-title-row">
+      <div>
+        <h1>Fotos de la obra</h1>
+        <p class="subtle">Registro visual de avances, ordenadas de más reciente a más antigua.</p>
+      </div>
+      <button class="btn primary" onclick="openPhotoDialog()">Subir fotos</button>
+    </div>
+    ${photos.length ? `<div class="photo-grid">${photos.map(p => `
+      <div class="photo-tile" style="min-height:220px">
+        <img src="${p.storageUrl}" alt="${escapeHtml(p.comment || "Foto de obra")}">
+        <div class="photo-badge">${escapeHtml(p.by || "?")}</div>
+        <div class="photo-info" style="opacity:1;padding-top:40px">
+          <strong>📷 ${escapeHtml(p.by || "Desconocido")}</strong>
+          <span>🗓 ${escapeHtml(p.date || "")}</span>
+          ${p.comment ? `<div class="photo-comment">💬 ${escapeHtml(p.comment)}</div>` : ""}
+        </div>
+      </div>`).join("")}</div>` : `<div class="empty-state">Aún no hay fotos subidas.</div>`}
+  `;
+}
+function openPhotoDialog(){ document.getElementById("photoDialog").showModal(); }
+async function savePhotosFromForm(e){
+  e.preventDefault();
+  const input = document.getElementById("photoInput");
+  const comment = document.getElementById("photoComment").value.trim();
+  const files = [...input.files];
+  if(!files.length) return toast("Selecciona al menos una foto.");
+
+  const by = currentUser()?.name || "Usuario";
+  const btn = e.target.querySelector("button[type=submit]");
+  btn.disabled = true;
+  btn.textContent = "Subiendo…";
+
+  try {
+    for(const file of files){
+      const fileExt = file.name.split(".").pop();
+      const path = `fotos/${todayISO()}/${uid()}.${fileExt}`;
+
+      // Comprimir antes de subir (móvil → ~200KB en vez de ~4MB)
+      const compressed = await compressImage(file);
+      const sizeBefore = (file.size / 1024).toFixed(0);
+      const sizeAfter  = (compressed.size / 1024).toFixed(0);
+      console.log(`📷 ${file.name}: ${sizeBefore}KB → ${sizeAfter}KB`);
+
+      // Subir imagen comprimida a Supabase Storage (bucket "fotos")
+      const uploadRes = await fetch(`${SUPABASE_URL}/storage/v1/object/fotos/${path}`, {
+        method: "POST",
+        headers: { "apikey": SUPABASE_KEY, "Authorization": `Bearer ${SUPABASE_KEY}`, "Content-Type": "image/jpeg" },
+        body: compressed
+      });
+      if(!uploadRes.ok){
+        const err = await uploadRes.text();
+        // Si el bucket no existe, guardar como base64 de fallback
+        if(err.includes("Bucket not found") || err.includes("bucket")){
+          const dataUrl = await fileToDataUrl(compressed);
+          await sb.insert("photos", { id:uid(), file_name:file.name, storage_url: dataUrl, comment, by, date:todayISO(), created_at:new Date().toISOString() });
+        } else {
+          toast(`⚠️ Error subiendo "${file.name}".`);
+          continue;
+        }
+      } else {
+        const publicUrl = `${SUPABASE_URL}/storage/v1/object/public/fotos/${path}`;
+        await sb.insert("photos", { id:uid(), file_name:file.name, storage_url: publicUrl, comment, by, date:todayISO(), created_at:new Date().toISOString() });
+      }
+    }
+    input.value = "";
+    document.getElementById("photoComment").value = "";
+    document.getElementById("photoDialog").close();
+    toast("Fotos guardadas.");
+    await refreshData();
+  } catch(err){
+    toast("❌ Error al subir fotos.");
+    console.error(err);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Guardar fotos";
+  }
+}
+function fileToDataUrl(file){
+  return new Promise((resolve,reject)=>{
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+// Comprime una imagen antes de subirla — máx 1200px de ancho, calidad 80%
+// Reduce fotos de móvil de ~4MB a ~200KB sin pérdida visual apreciable
+function compressImage(file, maxWidth = 1200, quality = 0.80){
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        const scale = Math.min(1, maxWidth / img.width);
+        const w = Math.round(img.width  * scale);
+        const h = Math.round(img.height * scale);
+        const canvas = document.createElement("canvas");
+        canvas.width  = w;
+        canvas.height = h;
+        canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+        canvas.toBlob(blob => resolve(blob), "image/jpeg", quality);
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function renderIncidents(){
+  const page = document.getElementById("incidentsPage");
+  page.innerHTML = `
+    <div class="page-title-row">
+      <div>
+        <h1>Incidencias</h1>
+        <p class="subtle">Problemas, riesgos y tareas pendientes de revisar.</p>
+      </div>
+      <button class="btn primary" onclick="openIncidentDialog()">+ Nueva incidencia</button>
+    </div>
+    <div class="incident-grid">
+      ${state.data.incidents.map(i => `
+        <article class="incident-card">
+          <div class="section-head" style="margin-bottom:8px">
+            <div>
+              <h3>${escapeHtml(i.title)}</h3>
+              <p class="subtle">Creada por ${escapeHtml(i.createdBy)} · ${i.createdAt}</p>
+            </div>
+          </div>
+          <div class="kpi-row">
+            <span class="badge ${i.priority==="Alta" ? "red" : i.priority==="Media" ? "orange" : "gray"}">${i.priority}</span>
+            <span class="badge ${i.status==="Resuelta" ? "green" : "orange"}">${i.status}</span>
+          </div>
+          <p class="subtle" style="margin-top:14px">${escapeHtml(i.description)}</p>
+          ${userIsAdmin() ? `<div class="card-actions">
+            <button class="btn secondary" onclick="setIncidentStatus('${i.id}','En revisión')">En revisión</button>
+            <button class="btn secondary" onclick="setIncidentStatus('${i.id}','Resuelta')">Resolver</button>
+            <button class="btn danger" onclick="deleteIncident('${i.id}')">Eliminar</button>
+          </div>` : ""}
+        </article>
+      `).join("")}
+    </div>
+  `;
+}
+function openIncidentDialog(){ document.getElementById("incidentDialog").showModal(); }
+async function saveIncidentFromForm(e){
+  e.preventDefault();
+  const title = document.getElementById("incidentTitle").value.trim();
+  const description = document.getElementById("incidentDescription").value.trim();
+  if(!title || !description){
+    toast("Rellena el título y la descripción.");
+    return;
+  }
+  const btn = e.target.querySelector("button[type=submit]");
+  btn.disabled = true;
+  try {
+    await sb.insert("incidents", {
+      id: uid(),
+      title,
+      priority: document.getElementById("incidentPriority").value,
+      status: document.getElementById("incidentStatus").value,
+      description,
+      created_by: currentUser()?.name || "Usuario",
+      created_at: todayISO()
+    });
+    e.target.reset();
+    document.getElementById("incidentDialog").close();
+    toast("Incidencia creada.");
+    await refreshData();
+  } catch(err){
+    toast("❌ Error al crear la incidencia.");
+    console.error(err);
+  } finally {
+    btn.disabled = false;
+  }
+}
+async function setIncidentStatus(id,status){
+  try {
+    await sb.update("incidents", id, { status });
+    await refreshData();
+  } catch(err){ toast("❌ Error al actualizar incidencia."); console.error(err); }
+}
+async function deleteIncident(id){
+  if(!confirm("¿Eliminar esta incidencia?")) return;
+  try {
+    await sb.delete("incidents", id);
+    toast("Incidencia eliminada.");
+    await refreshData();
+  } catch(err){ toast("❌ Error al eliminar incidencia."); console.error(err); }
+}
+
+function renderSettings(){
+  const page = document.getElementById("settingsPage");
+  const u = currentUser();
+  if(!u){ page.innerHTML = `<div class="empty-state">Cargando datos…</div>`; return; }
+  page.innerHTML = `
+    <div class="page-title-row">
+      <div>
+        <h1>${userIsAdmin() ? "Ajustes" : "Mi acceso"}</h1>
+        <p class="subtle">Información de acceso y configuración básica.</p>
+      </div>
+    </div>
+    <div class="settings-list">
+      <div class="setting-block">
+        <h3>Cuenta actual</h3>
+        <p class="subtle">Nombre: <strong>${u.name}</strong></p>
+        <p class="subtle">Rol: <strong>${userIsAdmin() ? "Administrador" : "Trabajador"}</strong></p>
+        <p class="subtle">Usuario: <code>${u.username}</code></p>
+      </div>
+      <div class="setting-block">
+        <h3>Seguridad</h3>
+        <p class="subtle">Los datos se guardan en Supabase y son accesibles desde cualquier dispositivo.</p>
+        ${userIsAdmin() ? `<p><strong>Contraseña del jefe:</strong> <code>${ADMIN.password}</code></p>` : `<p><strong>Tu código de acceso:</strong> <code>${u.password}</code></p>`}
+      </div>
+      ${userIsAdmin() ? `<div class="setting-block">
+        <h3>Gestión de datos</h3>
+        <p class="subtle">Puedes exportar una copia de seguridad o importar datos previamente guardados.</p>
+        <div class="card-actions">
+          <button class="btn secondary" onclick="exportData()">Exportar PDF</button>
+          <button class="btn danger" onclick="resetApp()">Reiniciar aplicación</button>
+        </div>
+      </div>` : ""}
+    </div>
+  `;
+}
+
+function exportData(){
+  openExportDialog();
+}
+
+function openExportDialog(){
+  // Calcular rango por defecto: primer parte hasta hoy
+  const allDates = state.data.reports.map(r => r.date).sort();
+  const minDate = allDates[0] || todayISO();
+  const maxDate = todayISO();
+
+  let dlg = document.getElementById("exportDialog");
+  if(!dlg){
+    dlg = document.createElement("dialog");
+    dlg.id = "exportDialog";
+    dlg.className = "modal";
+    document.body.appendChild(dlg);
+  }
+  dlg.innerHTML = `
+    <div class="modal-card" style="max-width:480px">
+      <div class="modal-head">
+        <h3>Exportar informe PDF</h3>
+        <button class="icon-btn" type="button" onclick="document.getElementById('exportDialog').close()">✕</button>
+      </div>
+      <p class="subtle">Selecciona el rango de fechas que quieres incluir en el informe.</p>
+      <div class="grid two" style="margin-bottom:16px">
+        <label><span>Fecha inicio</span><input type="date" id="exportFrom" value="${minDate}" max="${maxDate}"></label>
+        <label><span>Fecha fin</span><input type="date" id="exportTo" value="${maxDate}" min="${minDate}"></label>
+      </div>
+      <p class="subtle" style="margin-bottom:16px">El PDF incluirá: partes diarios por persona, incidencias y lista de trabajadores con sus códigos de acceso.</p>
+      <div class="modal-actions">
+        <button class="btn secondary" onclick="document.getElementById('exportDialog').close()">Cancelar</button>
+        <button class="btn ghost" onclick="generatePDF('print')">🖨️ Imprimir</button>
+        <button class="btn primary" onclick="generatePDF('download')">⬇️ Descargar PDF</button>
+      </div>
+    </div>
+  `;
+  dlg.showModal();
+}
+
+function generatePDF(mode = "download"){
+  const from = document.getElementById("exportFrom").value;
+  const to   = document.getElementById("exportTo").value;
+  if(!from || !to || from > to){ toast("Rango de fechas inválido."); return; }
+
+  // Filtrar y agrupar reports por fecha, luego por trabajador
+  const reports = state.data.reports
+    .filter(r => r.date >= from && r.date <= to)
+    .sort((a,b) => a.date.localeCompare(b.date) || (workerById(a.workerId)?.name || "").localeCompare(workerById(b.workerId)?.name || ""));
+
+  const incidents = state.data.incidents;
+  const workers   = state.data.workers;
+
+  // Agrupar por fecha
+  const byDate = {};
+  for(const r of reports){
+    if(!byDate[r.date]) byDate[r.date] = [];
+    byDate[r.date].push(r);
+  }
+
+  const totalHours = reports.reduce((s,r) => s + Number(r.hours||0), 0);
+  const openInc    = incidents.filter(i => i.status !== "Resuelta").length;
+
+  // ── Construir HTML del PDF ─────────────────────────────────────────────────
+  const css = `
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,sans-serif;font-size:12px;color:#1a1a2e;background:#fff;padding:0}
+    .cover{background:linear-gradient(135deg,#061b36,#1456a0);color:#fff;padding:48px 40px;min-height:220px;position:relative}
+    .cover h1{font-size:32px;font-weight:900;letter-spacing:-.02em;margin-bottom:6px}
+    .cover .sub{font-size:14px;opacity:.75;margin-bottom:24px}
+    .cover .kpis{display:flex;gap:24px;flex-wrap:wrap}
+    .cover .kpi{background:rgba(255,255,255,.12);border-radius:10px;padding:12px 18px;min-width:120px}
+    .cover .kpi strong{display:block;font-size:22px;font-weight:900}
+    .cover .kpi span{font-size:11px;opacity:.75}
+    .cover .badge-range{display:inline-block;background:rgba(245,166,35,.25);border:1px solid rgba(245,166,35,.5);color:#f5d48a;border-radius:20px;padding:4px 14px;font-size:11px;font-weight:700;margin-bottom:18px}
+    .section{padding:28px 40px;border-bottom:2px solid #f0f4f8}
+    .section-title{font-size:15px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:#061b36;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid #f5a623;display:inline-block}
+    .day-block{margin-bottom:28px}
+    .day-label{font-size:13px;font-weight:900;color:#1456a0;background:#eef3fa;border-left:4px solid #1456a0;padding:7px 14px;border-radius:0 8px 8px 0;margin-bottom:10px;text-transform:capitalize}
+    .report-card{border:1px solid #e2e8f0;border-radius:10px;padding:14px 16px;margin-bottom:10px;background:#fafbfc}
+    .report-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+    .avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#f5a623,#ffd58b);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#061b36;flex-shrink:0}
+    .report-header h4{font-size:13px;font-weight:900;margin-bottom:1px}
+    .report-header span{font-size:11px;color:#64748b}
+    .hours-badge{margin-left:auto;background:#dcfce7;color:#166534;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:900;white-space:nowrap}
+    .fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+    .field label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#94a3b8;display:block;margin-bottom:2px}
+    .field p{font-size:11px;color:#334155;line-height:1.4}
+    .inc-card{border-left:4px solid #ccc;border-radius:0 8px 8px 0;padding:10px 14px;margin-bottom:8px;background:#fafbfc}
+    .inc-card.alta{border-color:#c93434;background:#fff5f5}
+    .inc-card.media{border-color:#d97706;background:#fffbf0}
+    .inc-card.baja{border-color:#16835d;background:#f0fdf4}
+    .inc-header{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+    .inc-header h4{font-size:12px;font-weight:900}
+    .badge{display:inline-block;border-radius:20px;padding:2px 8px;font-size:10px;font-weight:900}
+    .badge.red{background:#fee2e2;color:#991b1b}
+    .badge.orange{background:#ffedd5;color:#9a3412}
+    .badge.green{background:#dcfce7;color:#166534}
+    .badge.gray{background:#f1f5f9;color:#475569}
+    .badge.blue{background:#dbeafe;color:#1e40af}
+    .workers-table{width:100%;border-collapse:collapse}
+    .workers-table th{background:#061b36;color:#fff;padding:8px 12px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.05em}
+    .workers-table td{padding:8px 12px;border-bottom:1px solid #e2e8f0;font-size:11px}
+    .workers-table tr:nth-child(even) td{background:#f8fafc}
+    .code{font-family:monospace;background:#0b1b33;color:#fff;padding:2px 7px;border-radius:5px;font-size:10px}
+    .footer{padding:20px 40px;text-align:center;font-size:10px;color:#94a3b8;border-top:1px solid #e2e8f0;background:#f8fafc}
+    @media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+  `;
+
+  const fmt = iso => {
+    const d = new Date(iso + "T12:00:00");
+    return d.toLocaleDateString("es-ES", {weekday:"long", day:"numeric", month:"long", year:"numeric"});
+  };
+  const initials = name => name.split(" ").filter(Boolean).slice(0,2).map(p=>p[0]?.toUpperCase()).join("") || "?";
+  const esc = str => String(str||"").replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+
+  // Portada
+  let html = `<!doctype html><html lang="es"><head><meta charset="utf-8"><title>Informe Luca Construcciones</title><style>${css}</style></head><body>`;
+  html += `<div class="cover">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(245,166,35,.9);margin-bottom:10px">Luca Construcciones · Informe de obra</div>
+    <h1>Informe de actividad</h1>
+    <p class="sub">Generado el ${fmt(todayISO())} · Carlos Martínez (Administrador)</p>
+    <div class="badge-range">📅 ${fmt(from)} → ${fmt(to)}</div>
+    <div class="kpis">
+      <div class="kpi"><strong>${reports.length}</strong><span>Partes registrados</span></div>
+      <div class="kpi"><strong>${totalHours}h</strong><span>Horas totales</span></div>
+      <div class="kpi"><strong>${Object.keys(byDate).length}</strong><span>Días con actividad</span></div>
+      <div class="kpi"><strong>${openInc}</strong><span>Incidencias abiertas</span></div>
+    </div>
+  </div>`;
+
+  // Sección partes por día y persona
+  html += `<div class="section"><div class="section-title">Partes diarios</div>`;
+  if(Object.keys(byDate).length === 0){
+    html += `<p style="color:#64748b;margin-top:12px">No hay partes registrados en este rango de fechas.</p>`;
+  }
+  for(const date of Object.keys(byDate).sort()){
+    const dayReports = byDate[date];
+    const dayHours = dayReports.reduce((s,r)=>s+Number(r.hours||0),0);
+    html += `<div class="day-block">
+      <div class="day-label">${fmt(date)} <span style="font-weight:400;font-size:11px;opacity:.7">· ${dayReports.length} parte${dayReports.length!==1?"s":""} · ${dayHours}h totales</span></div>`;
+    for(const r of dayReports){
+      const w = workerById(r.workerId) || {name:"Trabajador eliminado", job:""};
+      html += `<div class="report-card">
+        <div class="report-header">
+          <div class="avatar">${initials(w.name)}</div>
+          <div><h4>${esc(w.name)}</h4><span>${esc(w.job)}</span></div>
+          <div class="hours-badge">⏱ ${Number(r.hours||0)}h</div>
+        </div>
+        <div class="fields">
+          <div class="field"><label>Trabajo realizado</label><p>${esc(r.workDone||"—")}</p></div>
+          <div class="field"><label>Problemas / incidencias</label><p>${esc(r.problems||"—")}</p></div>
+          <div class="field"><label>Material / notas</label><p>${esc(r.materials||"—")}</p></div>
+        </div>
+      </div>`;
+    }
+    html += `</div>`;
+  }
+  html += `</div>`;
+
+  // Sección incidencias
+  html += `<div class="section"><div class="section-title">Incidencias</div>`;
+  if(incidents.length === 0){
+    html += `<p style="color:#64748b;margin-top:12px">Sin incidencias registradas.</p>`;
+  }
+  for(const i of incidents){
+    const priClass = i.priority==="Alta"?"alta":i.priority==="Media"?"media":"baja";
+    const priBadge = i.priority==="Alta"?"red":i.priority==="Media"?"orange":"green";
+    const stBadge  = i.status==="Resuelta"?"green":i.status==="En revisión"?"blue":"orange";
+    html += `<div class="inc-card ${priClass}">
+      <div class="inc-header">
+        <h4>${esc(i.title)}</h4>
+        <span class="badge ${priBadge}">${esc(i.priority)}</span>
+        <span class="badge ${stBadge}">${esc(i.status)}</span>
+      </div>
+      <p style="font-size:11px;color:#475569;margin-bottom:4px">${esc(i.description||"")}</p>
+      <p style="font-size:10px;color:#94a3b8">Creada por ${esc(i.createdBy)} · ${esc(i.createdAt)}</p>
+    </div>`;
+  }
+  html += `</div>`;
+
+  // Sección trabajadores con códigos
+  html += `<div class="section"><div class="section-title">Trabajadores y códigos de acceso</div>
+    <table class="workers-table">
+      <thead><tr><th>Nombre</th><th>Puesto</th><th>Usuario</th><th>Código de acceso</th><th>Estado</th></tr></thead>
+      <tbody>`;
+  for(const w of workers){
+    html += `<tr>
+      <td><strong>${esc(w.name)}</strong></td>
+      <td>${esc(w.job)}</td>
+      <td style="color:#475569">${esc(w.username)}</td>
+      <td><span class="code">${esc(w.password)}</span></td>
+      <td><span class="badge ${w.active?"green":"red"}">${w.active?"Activo":"Bloqueado"}</span></td>
+    </tr>`;
+  }
+  html += `</tbody></table></div>`;
+
+  // Footer
+  html += `<div class="footer">Luca Construcciones · Informe generado automáticamente el ${fmt(todayISO())} · Prisma Studio AI</div>`;
+  html += `</body></html>`;
+
+  document.getElementById("exportDialog").close();
+
+  // Modo impresión: abrir en nueva pestaña y lanzar print del navegador
+  if(mode === "print"){
+    const win = window.open("", "_blank");
+    win.document.write(html);
+    win.document.close();
+    win.onload = () => setTimeout(() => win.print(), 400);
+    toast("Abriendo vista de impresión…");
+    return;
+  }
+
+  toast("Generando PDF… puede tardar unos segundos.");
+
+  // Renderizar el HTML en un iframe oculto, capturar con html2canvas y exportar con jsPDF
+  const iframe = document.createElement("iframe");
+  iframe.style.cssText = "position:fixed;left:-9999px;top:0;width:900px;height:1px;border:0;visibility:hidden";
+  document.body.appendChild(iframe);
+  iframe.contentDocument.open();
+  iframe.contentDocument.write(html);
+  iframe.contentDocument.close();
+
+  iframe.onload = async () => {
+    try {
+      const iDoc = iframe.contentDocument.body;
+      // Dar tiempo al navegador a renderizar imágenes y estilos
+      await new Promise(r => setTimeout(r, 800));
+
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF({ orientation:"portrait", unit:"mm", format:"a4" });
+      const pageW = pdf.internal.pageSize.getWidth();
+      const pageH = pdf.internal.pageSize.getHeight();
+      const margin = 0;
+
+      // Capturar el contenido completo en un canvas
+      const canvas = await html2canvas(iDoc, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: "#ffffff",
+        width: 900,
+        windowWidth: 900
+      });
+
+      const imgData  = canvas.toDataURL("image/jpeg", 0.92);
+      const imgW     = pageW - margin * 2;
+      const imgH     = (canvas.height * imgW) / canvas.width;
+      const totalPages = Math.ceil(imgH / pageH);
+
+      for(let i = 0; i < totalPages; i++){
+        if(i > 0) pdf.addPage();
+        pdf.addImage(imgData, "JPEG", margin, -(i * pageH), imgW, imgH);
+      }
+
+      pdf.save(`Luca-Construcciones-Informe-${from}-${to}.pdf`);
+      toast("✅ PDF descargado correctamente.");
+    } catch(err){
+      toast("❌ Error generando el PDF. Inténtalo de nuevo.");
+      console.error(err);
+    } finally {
+      document.body.removeChild(iframe);
+    }
+  };
+}
+
+function goPage(page){
+  state.page = page;
+  render();
+}
+function escapeHtml(str){
+  return String(str || "").replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+}
+
+window.goPage = goPage;
+window.openWorkerDialog = openWorkerDialog;
+window.editWorker = editWorker;
+window.toggleWorker = toggleWorker;
+window.deleteWorker = deleteWorker;
+window.openPhotoDialog = openPhotoDialog;
+window.openIncidentDialog = openIncidentDialog;
+window.setIncidentStatus = setIncidentStatus;
+window.deleteIncident = deleteIncident;
+window.exportData = exportData;
+window.resetApp = resetApp;
+
+</script>
+</body>
+</html>
